@@ -22,6 +22,11 @@ mongoose.connect(process.env.MONGO_URI, {
 const contactRouter = require("./routes/contact"); // import routes
 app.use("/api/contact", contactRouter);            // mount at /api/contact
 
+// use inbox routes
+const inboxRoutes = require("./routes/inbox");
+app.use("/api/inbox", inboxRoutes);
+
+
 // --- Start server ---
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
