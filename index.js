@@ -18,6 +18,11 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log("✅ MongoDB connected"))
 .catch(err => console.error("❌ DB Error:", err));
 
+// Routes
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 // --- Routes ---
 const contactRouter = require("./routes/contact"); // import routes
 app.use("/api/contact", contactRouter);            // mount at /api/contact
