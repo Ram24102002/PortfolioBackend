@@ -6,6 +6,8 @@ const ContactSchema = new mongoose.Schema({
   name: { type: String, required: true },    // user's name
   email: { type: String, required: true },   // user's email
   comment: { type: String, required: true }, // user's comment/message
+  read: { type: Boolean, default: false },
+  stared: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now } // timestamp
 });
 
