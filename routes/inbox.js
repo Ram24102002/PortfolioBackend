@@ -18,11 +18,9 @@ router.patch("/:id/read", async (req, res) => {
     const { id } = req.params;
     const { read } = req.body; // expects boolean true/false
 
-    console.log("Incoming body:", req.body);
-
     const updated = await Inbox.findByIdAndUpdate(
       id,
-      { $set: { read } },       // force update
+      { $set: { read } },
       { new: true, runValidators: true }
     );
 
@@ -43,11 +41,9 @@ router.patch("/:id/stared", async (req, res) => {
     const { id } = req.params;
     const { stared } = req.body; // expects boolean true/false
 
-    console.log("Incoming body:", req.body);
-
     const updated = await Inbox.findByIdAndUpdate(
       id,
-      { $set: { stared } },       // force update
+      { $set: { stared } },
       { new: true, runValidators: true }
     );
 
@@ -58,9 +54,20 @@ router.patch("/:id/stared", async (req, res) => {
     res.json(updated);
   } catch (err) {
     console.error("Update error:", err);
-    res.status(500).json({ error: "Failed to update read status" });
+    res.status(500).json({ error: "Failed to update starred status" });
   }
 });
 
+// --- DELETE: delete message ---
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Inbox.findByIdAndDelete(id);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Delete error:", err);
+    res.status(500).json({ error: "Failed to delete message" });
+  }
+});
 
 module.exports = router;

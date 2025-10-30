@@ -32,11 +32,10 @@ const inboxRoutes = require("./routes/inbox");
 app.use("/api/inbox", inboxRoutes);
 
 
-// Add this somewhere after your other app.use / middleware
+
 app.get("/ping", (req, res) => {
   res.status(200).send("pong");
 });
-
 
 
 // --- Start server ---
